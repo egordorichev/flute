@@ -1,0 +1,41 @@
+class Area {
+	constructor() {
+		this.entities = []
+		this.toAdd = []
+		this.toRemove = []
+	}
+
+	update(dt) {
+		if (this.toAdd.length > 0) {
+			for (var entity in this.toAdd) {
+				this.entities.add(entity)
+			}
+
+			this.toAdd.clear()
+		}
+
+		if (this.toRemove.length > 0) {
+			for (var entity in this.toRemove) {
+				this.entities.remove(entity)
+				entity.done = true
+				entity.destroy()
+			}
+
+			this.toRemove.clear()
+		}
+
+		for (var entity in this.entities) {
+			entity.update(dt)
+
+			if (entity.done) {
+				this.toRemove.add(entity)
+			}
+		}
+	}
+
+	render() {
+		for (var entity in this.entities) {
+			entity.render()
+		}
+	}
+}

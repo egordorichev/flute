@@ -1,0 +1,21 @@
+class Component {
+	constructor(name) {
+		if (name !is String) {
+			Fiber.abort("Expected component name")
+		}
+
+		this.id = name
+	}
+
+	init() {
+
+	}
+
+	destroy() {
+		
+	}
+
+	update(dt) {
+
+	}
+}

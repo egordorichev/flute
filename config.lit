@@ -1,0 +1,11 @@
+const SCALE = 3
+
+function tsab.configure() {
+	return {
+		window = {
+			width = 320 * SCALE,
+			height = 180 * SCALE,
+			title = "flute"
+		}
+	}
+}

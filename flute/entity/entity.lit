@@ -1,0 +1,50 @@
+class Entity {
+	constructor() {
+		this.components = []
+		this.done = false
+	}
+
+	addComponents() {
+
+	}
+
+	init() {
+		for (var component in this.components) {
+			component.init()
+		}
+	}
+
+	destroy() {
+		for (var component in this.components) {
+			component.destroy()
+		}
+	}
+
+	update(dt) {
+		for (var component in this.components) {
+			component.update(dt)
+		}
+	}
+
+	render() {
+		this.graphicsComponent?.render()
+	}
+
+	addComponent(component) {
+		this[component.id] = component
+		this.components.add(component)
+
+		if (component is GraphicsComponent) {
+			this.graphicsComponent = component
+		}
+	}
+
+	removeComponent(component) {
+		this.components[component.id] = null
+		this.components.remove(component)
+
+		if (component == this.graphicsComponent) {
+			this.graphicsComponent = null
+		}
+	}
+}

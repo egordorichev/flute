@@ -1,0 +1,9 @@
+class GraphicsComponent : Component {
+	constructor(name) {
+		super(name)
+	}
+
+	render() {
+
+	}
+}
