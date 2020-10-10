@@ -1,0 +1,21 @@
+class State {
+	constructor() {
+		this.area = new Area()
+	}
+
+	init() {
+		this.area.add(new Player())
+	}
+
+	destroy() {
+		this.area.destroy()
+	}
+
+	update(dt) {
+		this.area.update(dt)
+	}
+
+	render() {
+		this.area.render()
+	}
+}

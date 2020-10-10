@@ -8,7 +8,11 @@ class Area {
 	update(dt) {
 		if (this.toAdd.length > 0) {
 			for (var entity in this.toAdd) {
+				entity.area = this
 				this.entities.add(entity)
+
+				entity.addComponents()
+				entity.init()
 			}
 
 			this.toAdd.clear()
@@ -25,6 +29,10 @@ class Area {
 		}
 
 		for (var entity in this.entities) {
+			if (!entity.active) {
+				continue
+			}
+
 			entity.update(dt)
 
 			if (entity.done) {
@@ -35,7 +43,15 @@ class Area {
 
 	render() {
 		for (var entity in this.entities) {
+			if (!entity.visible) {
+				continue
+			}
+			
 			entity.render()
 		}
+	}
+
+	add(entity) {
+		this.toAdd.add(entity)
 	}
 }

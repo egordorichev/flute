@@ -1,5 +1,18 @@
 require("flute")
+require("test.player")
+
+function tsab.init() {
+	StateManager.transition(new State())
+}
 
 function tsab.render() {
-	Graphics.print("Hello, world!", 10, 10)
+	StateManager.render()
+}
+
+function tsab.update(dt) {
+	StateManager.update(dt)
+}
+
+function tsab.destroy() {
+	StateManager.destroy()
 }

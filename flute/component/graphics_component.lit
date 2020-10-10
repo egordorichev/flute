@@ -1,6 +1,6 @@
 class GraphicsComponent : Component {
-	constructor(name) {
-		super(name)
+	constructor() {
+		super("graphics")
 	}
 
 	render() {

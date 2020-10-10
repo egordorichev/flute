@@ -1,7 +1,54 @@
 class Entity {
+	x {
+		get => this.position.x
+		set => this.position.x = value
+	}
+	
+	y {
+		get => this.position.y
+		set => this.position.y = value
+	}
+
+	centerX {
+		get => this.position.x + this.width * 0.5
+		set => this.position.x = value - this.width * 0.5
+	}
+	
+	centerY {
+		get => this.position.y + this.height * 0.5
+		set => this.position.y = value - this.height * 0.5
+	}
+
+	center {
+		get => new Vector(this.centerX, this.centerY)
+		set => {
+			this.centerX = v.x
+			this.centerY = v.y
+		}
+	}
+
+	right {
+		get => this.position.x + this.width
+		set => this.position.x = value - this.width
+	}
+	
+	bottom {
+		get => this.position.y + this.height
+		set => this.position.y = value - this.height
+	}
+	
 	constructor() {
 		this.components = []
 		this.done = false
+
+		this.position = new Vector()
+		this.width = 16
+		this.height = 16
+
+		this.active = true
+		this.visible = true
+		this.alwaysActive = false
+		this.alwaysVisible = false
 	}
 
 	addComponents() {
@@ -37,6 +84,9 @@ class Entity {
 		if (component is GraphicsComponent) {
 			this.graphicsComponent = component
 		}
+
+		component.entity = this
+		component.init()
 	}
 
 	removeComponent(component) {

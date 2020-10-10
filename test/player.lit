@@ -1,0 +1,40 @@
+class Player : Entity {
+	addComponents() {
+		this.addComponent(new PlayerGraphicsComponent())
+		this.addComponent(new PlayerInputComponent())
+
+		this.alwaysActive = true
+	}
+}
+
+class PlayerGraphicsComponent : GraphicsComponent {
+	render() {
+		Graphics.print("Sup", this.entity.x, this.entity.y)
+	}
+}
+
+class PlayerInputComponent : Component {
+	constructor() {
+		super("input")
+	}
+
+	update(dt) {
+		const s = dt * 100
+
+		if (Input.isDown("left")) {
+			this.entity.x -= s
+		}
+		
+		if (Input.isDown("right")) {
+			this.entity.x += s
+		}
+		
+		if (Input.isDown("up")) {
+			this.entity.y -= s
+		}
+		
+		if (Input.isDown("down")) {
+			this.entity.y += s
+		}
+	}
+}

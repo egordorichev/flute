@@ -1,0 +1,30 @@
+class Vector {
+	lengthSquared => return this.x ** 2 + this.y ** 2
+	length => Math.sqrt(this.lengthSquared)
+	angle => Math.atan2(this.y, this.x)
+
+	constructor(x, y) {
+		this.x = x ?? 0
+		this.y = x ?? y ?? 0
+	}
+
+	operator + (v) {
+		return new Vector(this.x + v.x, this.y + v.y)
+	}
+
+	operator - (v) {
+		return new Vector(this.x - v.x, this.y - v.y)
+	}
+
+	operator * (v) {
+		return new Vector(this.x * v, this.y * v)
+	}
+
+	operator / (v) {
+		return new Vector(this.x / v, this.y / v.y)
+	}
+
+	toString() {
+		return $"({this.x}, {this.y})"
+	}
+}

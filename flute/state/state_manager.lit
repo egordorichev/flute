@@ -1,0 +1,19 @@
+StateManager = {}
+
+function StateManager.transition(state) {
+	StateManager.state?.destroy()
+	StateManager.state = state
+	StateManager.state?.init()
+}
+
+function StateManager.update(dt) {
+	StateManager.state?.update(dt)
+}
+
+function StateManager.render() {
+	StateManager.state?.render()
+}
+
+function StateManager.destroy() {
+	StateManager.state?.destroy()
+}
