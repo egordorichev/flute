@@ -5,7 +5,7 @@ class Vector {
 
 	constructor(x, y) {
 		this.x = x ?? 0
-		this.y = x ?? y ?? 0
+		this.y = y ?? x ?? 0
 	}
 
 	operator + (v) {

@@ -8,8 +8,23 @@ class Player : Entity {
 }
 
 class PlayerGraphicsComponent : GraphicsComponent {
+	init() {
+		this.animation = new Animation(new AnimationData("test/assets/test.ase"))
+		this.animation.tag = "idle"
+		this.scale = new Vector(1)
+		this.angle = 0
+	}
+
+	update(dt) {
+		this.animation.update(dt)
+
+		this.scale.x += (1 - this.scale.x) * dt * 10
+		this.scale.y += (1 - this.scale.y) * dt * 10
+	}
+
 	render() {
-		Graphics.print("Sup", this.entity.x, this.entity.y)
+		var a = this.animation
+		Graphics.draw(a.texture, this.entity.x + a.width * 0.5, this.entity.y + a.height, this.angle * (this.flipped ? -1 : 1), a.width * 0.5, a.height, this.scale.x * (this.flipped ? -1 : 1), this.scale.y, a.frameX, 0, a.width, a.height)
 	}
 }
 
@@ -19,22 +34,44 @@ class PlayerInputComponent : Component {
 	}
 
 	update(dt) {
-		const s = dt * 100
+		const s = dt * 50
+		var dx = 0
+		var dy = 0
 
 		if (Input.isDown("left")) {
-			this.entity.x -= s
+			dx = -s
 		}
 		
 		if (Input.isDown("right")) {
-			this.entity.x += s
+			dx += s
 		}
 		
 		if (Input.isDown("up")) {
-			this.entity.y -= s
+			dy = -s
 		}
 		
 		if (Input.isDown("down")) {
-			this.entity.y += s
+			dy += s
 		}
+
+		var tag = this.entity.graphics.animation.tag
+
+		if (dx != 0 || dy != 0) {
+			this.entity.position += new Vector(dx, dy)
+			tag = "run"
+
+			if (dx != 0) {
+				this.entity.graphics.flipped = dx < 0
+			}
+		} else {
+			tag = "idle"
+		}
+
+		if (tag != this.entity.graphics.animation.tag) {
+			this.entity.graphics.animation.tag = tag
+			this.entity.graphics.scale = tag == "idle" ? new Vector(2, 0.1) : new Vector(0.1, 2)
+		}
+
+		this.entity.graphics.angle += ((dx != 0 ? -30 : 0) - this.entity.graphics.angle) * dt * 10
 	}
 }

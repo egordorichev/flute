@@ -56,9 +56,7 @@ class Entity {
 	}
 
 	init() {
-		for (var component in this.components) {
-			component.init()
-		}
+		
 	}
 
 	destroy() {

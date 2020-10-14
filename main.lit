@@ -6,7 +6,9 @@ function tsab.init() {
 }
 
 function tsab.render() {
+	Graphics.setCamera(0, 0, 4)
 	StateManager.render()
+	Graphics.setCamera()
 }
 
 function tsab.update(dt) {
