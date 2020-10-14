@@ -1,0 +1,34 @@
+class EventHandler {
+	constructor() {
+		this.subscibers = new Map()
+	}
+
+	handleEvent(e) {
+		var array = this.subscibers[e.id]
+
+		if (array) {
+			for (var subscriber in array) {
+				if (subscriber.handleEvent(e)) {
+					e.handled = true
+				}
+			}
+		}
+
+		return e.handled
+	}
+
+	subscribe(type, entity) {
+		var array = this.subscibers[type]
+
+		if (!array) {
+			array = []
+			this.subscibers[type] = array
+		}
+
+		array.add(entity)
+	}
+
+	unsubscribe(type, entity) {
+		this.subscibers[type]?.remove(entity)
+	}
+}

@@ -1,0 +1,27 @@
+class AnimationComponent : GraphicsComponent {
+	constructor(file) {
+		super()
+
+		this.animation = new Animation(new AnimationData(file))
+		this.animation.tag = "idle"
+
+		this.scale = new Vector(1)
+		this.angle = 0
+		this.flipped = false
+	}
+
+	handleEvent(e) {
+		if (e.id == "state.changed") {
+			this.animation.tag = e.state
+		}
+	}
+
+	update(dt) {
+		this.animation.update(dt)
+	}
+
+	render() {
+		var a = this.animation
+		Graphics.draw(a.texture, this.entity.x + a.width * 0.5, this.entity.y + a.height, this.angle * (this.flipped ? -1 : 1), a.width * 0.5, a.height, this.scale.x * (this.flipped ? -1 : 1), this.scale.y, a.frameX, 0, a.width, a.height)
+	}
+}

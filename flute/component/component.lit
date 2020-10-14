@@ -18,4 +18,12 @@ class Component {
 	update(dt) {
 
 	}
+
+	handleEvent(e) {
+		
+	}
+
+	sendEvent(e) {
+		this.entity.handleEvent(e)
+	}
 }

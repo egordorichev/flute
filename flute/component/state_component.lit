@@ -1,0 +1,22 @@
+class StateComponent : Component {
+	current {
+		get => this._current
+
+		set {
+			if (value != this._current) {
+				var old = this._current
+				this._current = value
+
+				this.sendEvent(new Event("state.changed") {
+					old = old,
+					state = value
+				})
+			}
+		}
+	}
+
+	constructor() {
+		super("state")
+		this._current = "idle"
+	}
+}

@@ -3,6 +3,7 @@ class Area {
 		this.entities = []
 		this.toAdd = []
 		this.toRemove = []
+		this.eventHandler = new EventHandler()
 	}
 
 	update(dt) {

@@ -1,0 +1,11 @@
+class Event {
+	constructor(id) {
+		if (id !is String) {
+			Fiber.abort("Expected string as event id")
+		}
+
+		this.id = id
+		this.handled = false
+		this.wasInHandler = false
+	}
+}

@@ -1,30 +1,10 @@
 class Player : Entity {
 	addComponents() {
-		this.addComponent(new PlayerGraphicsComponent())
+		this.addComponent(new StateComponent())
+		this.addComponent(new AnimationComponent("test/assets/test.ase"))
 		this.addComponent(new PlayerInputComponent())
 
 		this.alwaysActive = true
-	}
-}
-
-class PlayerGraphicsComponent : GraphicsComponent {
-	init() {
-		this.animation = new Animation(new AnimationData("test/assets/test.ase"))
-		this.animation.tag = "idle"
-		this.scale = new Vector(1)
-		this.angle = 0
-	}
-
-	update(dt) {
-		this.animation.update(dt)
-
-		this.scale.x += (1 - this.scale.x) * dt * 10
-		this.scale.y += (1 - this.scale.y) * dt * 10
-	}
-
-	render() {
-		var a = this.animation
-		Graphics.draw(a.texture, this.entity.x + a.width * 0.5, this.entity.y + a.height, this.angle * (this.flipped ? -1 : 1), a.width * 0.5, a.height, this.scale.x * (this.flipped ? -1 : 1), this.scale.y, a.frameX, 0, a.width, a.height)
 	}
 }
 
@@ -54,22 +34,15 @@ class PlayerInputComponent : Component {
 			dy += s
 		}
 
-		var tag = this.entity.graphics.animation.tag
-
 		if (dx != 0 || dy != 0) {
 			this.entity.position += new Vector(dx, dy)
-			tag = "run"
+			this.entity.state.current = "run"
 
 			if (dx != 0) {
 				this.entity.graphics.flipped = dx < 0
 			}
 		} else {
-			tag = "idle"
-		}
-
-		if (tag != this.entity.graphics.animation.tag) {
-			this.entity.graphics.animation.tag = tag
-			this.entity.graphics.scale = tag == "idle" ? new Vector(2, 0.1) : new Vector(0.1, 2)
+			this.entity.state.current = "idle"
 		}
 
 		this.entity.graphics.angle += ((dx != 0 ? -30 : 0) - this.entity.graphics.angle) * dt * 10

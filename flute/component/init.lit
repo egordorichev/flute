@@ -1,3 +1,5 @@
 require("component")
 require("graphics_component")
 require("health_component")
+require("state_component")
+require("animation_component")

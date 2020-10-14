@@ -95,4 +95,22 @@ class Entity {
 			this.graphicsComponent = null
 		}
 	}
+
+	handleEvent(e) {
+		for (var component in this.components) {
+			if (component.handleEvent(e)) {
+				e.handled = true
+			}
+		}
+
+		if (!e.wasInHandler) {
+			e.wasInHandler = true
+
+			if (this.area.eventHandler.handleEvent(e)) {
+				e.handled = true
+			}
+		}
+
+		return e.handled
+	}
 }

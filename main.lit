@@ -10,7 +10,7 @@ function tsab.render() {
 	StateManager.render()
 	Graphics.setCamera()
 }
-
+ 
 function tsab.update(dt) {
 	StateManager.update(dt)
 }
