@@ -5,6 +5,11 @@ class Player : Entity {
 		this.addComponent(new PlayerInputComponent())
 
 		this.alwaysActive = true
+
+		this.addTag("player", "target")
+		print(this.hasTag("player"))
+		this.removeTag("player")
+		print(this.hasTag("player"))
 	}
 }
 

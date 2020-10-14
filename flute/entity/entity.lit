@@ -39,6 +39,7 @@ class Entity {
 	
 	constructor() {
 		this.components = []
+		this.tags = new Map()
 		this.done = false
 
 		this.position = new Vector()
@@ -112,5 +113,21 @@ class Entity {
 		}
 
 		return e.handled
+	}
+
+	hasTag(tag) {
+		return this.tags[tag]
+	}
+
+	addTag(...) {
+		for (var t in ...) {
+			this.tags[t] = true
+		}
+	}
+
+	removeTag(...) {
+		for (var t in ...) {
+			this.tags[t] = null
+		}
 	}
 }
