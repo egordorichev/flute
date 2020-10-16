@@ -1,7 +1,9 @@
 require("flute")
 require("test.player")
+require("test.level")
 
 function tsab.init() {
+	triggerHook("init")
 	StateManager.transition(new State())
 }
 
@@ -9,6 +11,12 @@ function tsab.render() {
 	Graphics.setCamera(0, 0, 4)
 	StateManager.render()
 	Graphics.setCamera()
+
+	#ifdef DEBUG
+		ImGui.newFrame()
+		triggerHook("renderDebug")
+		ImGui.render()
+	#endif
 }
  
 function tsab.update(dt) {

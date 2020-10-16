@@ -1,0 +1,21 @@
+#ifdef DEBUG
+	registerHook("renderDebug", () => {
+		if (ImGui.begin("Debug")) {
+			ImGui.text($"Memory used: {Math.round(GC.memoryUsed / 1024, 1)}mb")
+			ImGui.text($"Next round: {Math.round(GC.nextRound / 1024, 1)}mb")
+			/*
+			* FPS
+			* Memory Usage
+			* Trigger GC
+			* Current state
+			* Entity browser
+			*/
+
+			if (ImGui.button("Trigger")) {
+				GC.trigger()
+			}
+		}
+
+		ImGui.end()
+	})
+#endif

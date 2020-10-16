@@ -22,6 +22,6 @@ class AnimationComponent : GraphicsComponent {
 
 	render() {
 		var a = this.animation
-		Graphics.draw(a.texture, this.entity.x + a.width * 0.5, this.entity.y + a.height, this.angle * (this.flipped ? -1 : 1), a.width * 0.5, a.height, this.scale.x * (this.flipped ? -1 : 1), this.scale.y, a.frameX, 0, a.width, a.height)
+		Graphics.draw(a.frame, this.entity.x + a.width * 0.5, this.entity.y + a.height, this.angle * (this.flipped ? -1 : 1), a.width * 0.5, a.height, this.scale.x * (this.flipped ? -1 : 1))
 	}
 }

@@ -1,2 +1,4 @@
 * Camera, visible detection
-* Event system
+* Physics & co
+* Depth sorting
+* Save systems (global & game)

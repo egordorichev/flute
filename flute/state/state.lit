@@ -4,7 +4,7 @@ class State {
 	}
 
 	init() {
-		this.area.add(new Player())
+		this.area.add(new Level())
 	}
 
 	destroy() {

@@ -54,5 +54,6 @@ class Area {
 
 	add(entity) {
 		this.toAdd.add(entity)
+		return entity
 	}
 }

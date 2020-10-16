@@ -1,5 +1,8 @@
+require("hooks")
+
 require("util")
 require("event")
 require("component")
 require("entity")
 require("state")
+require("debug")

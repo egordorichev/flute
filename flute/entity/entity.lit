@@ -50,6 +50,7 @@ class Entity {
 		this.visible = true
 		this.alwaysActive = false
 		this.alwaysVisible = false
+		this.depth = 0
 	}
 
 	addComponents() {

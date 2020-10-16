@@ -1,0 +1,20 @@
+class Level : Entity {
+	init() {
+		this.map = new Tilemap("test/assets/map.json", "tiles", (o, layer) => {
+			if (layer == "objects") {
+				if (o.name == "player") {
+					this.area.add(new Player() {
+						x = o.x, y = o.y
+					})
+				}
+			}
+		})
+
+		this.depth = -1
+		this.alwaysVisible = true
+	}
+
+	render() {
+		this.map.render(0, 0, 32, 32)
+	}
+}

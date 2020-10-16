@@ -1,0 +1,23 @@
+var callbacks = new Map()
+
+export function registerHook(event, fn) {
+	var array = callbacks[event]
+
+	if (!array) {
+		callbacks[event] = array = []
+	}
+
+	array.add(fn)
+}
+
+export function triggerHook(event) {
+	var array = callbacks[event]
+
+	if (!array) {
+		return
+	}
+
+	for (var c in array) {
+		c()
+	}
+}

@@ -1,5 +1,6 @@
 class HealthComponent : Component {
 	constructor() {
 		super("health")
+		// todo
 	}
 }
